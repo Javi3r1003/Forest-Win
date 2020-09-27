@@ -97,6 +97,88 @@ public int menu(){
 		return opcion;
 	}
 	
+//Método para pedir datos al usuario del terreno e imprimir los árboles que cumplen con las condicones
+	public void filtrosDeBusqueda()
+	{
+		float maxp = 1;
+		float minp = 1;
+		float maxt = 1;
+		float mint = 1;
+		float p, t, dp, dt; 
+		String ilum = "";
+		String util = "";
+		String s, st;
+		boolean i = false;
+		boolean u = false;
+		int c = 0;
+		
+		System.out.println("\n1-Ingrese los datos");
+		System.out.println("Ingrese la precipitacion maxima");
+		maxp = scan.nextFloat();
+		System.out.println("Ingrese la precipitacion minima");
+		minp = scan.nextFloat();
+		System.out.println("Ingrese la temperatura maxima");
+		maxp = scan.nextFloat();
+		System.out.println("Ingrese la temperatura minima");
+		minp = scan.nextFloat();
+		
+		p = ((maxp+minp)/2);
+		dp = maxp - p;
+		
+		t = ((maxt+mint)/2);
+		dt = maxt - t;
+		
+		System.out.println("Ingrese la iluminacion");
+		s = scan.next();
+		ilum = ilum + "," + s;
+		
+		while (i == false)
+		{
+
+			System.out.println("Desea ingresar otra iluminacion?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			int x = scan.nextInt();
+			
+			if (x == 1)
+			{
+				System.out.println("Ingrese la iluminacion");
+				s = scan.next();
+				ilum = ilum + "," + s;
+			}
+			else
+			{
+				i = true;
+			}
+		}
+		
+		System.out.println("Ingrese una utilidad");
+		st = scan.next();
+		util = util + "," + st;
+		
+		while (u == false)
+		{
+
+			System.out.println("Desea ingresar otra utilidad?");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			int y = scan.nextInt();
+			
+			if (y == 1)
+			{
+				System.out.println("Ingrese la utilidad");
+				st = scan.next();
+				util = util + "," + st;
+			}
+			else
+			{
+				u = true;
+			}
+		}
+		
+		System.out.println(a.filtrado(p, ilum, t, util));
+	}
+	
 	
 //---------------------------------------------------Métodos para los uauarios
 
