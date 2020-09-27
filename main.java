@@ -37,13 +37,13 @@ class main{
 						if(subOpcion == 1){
 							v.mostrarArboles();
 						}else if(subOpcion == 2){
-							//filtro
+							v.filtrosDeBusqueda();
 						}else if(subOpcion == 3){
 							v.agregarArbol();
 						}else if(subOpcion == 4){
 							v.eliminarArbol();
 							
-						}else if(v.salirPerfil()){
+						}else if(v.salirPerfil() == true){
 								subOpcion = 6;
 								
 						}
@@ -55,7 +55,7 @@ class main{
 				v.mostrarUsuarios();
 				
 			}else if(opcion == 4){
-				if(v.salirPrograma()){
+				if(v.salirPrograma() == true){
 					opcion = 5;
 				}
 			}
