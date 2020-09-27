@@ -35,17 +35,33 @@ class vista{
 //-------------------------------------------Métodos oara los menú
 
 	//Método para imprimir el menú principal y pedir las opciones al usuario
-	public int menu(){
-		System.out.println("\n            FORESTWIN");
-		System.out.println("-----------------------------------");
-		System.out.println("\n1- Iniciar sesion");
-		System.out.println("2- Registrarse");
-		System.out.println("3- Mostrar Usuarios");
-		System.out.println("4- Salir");
-		System.out.print("Ingrese la opcion que desea ejecutar: ");
-		int opcion = scan.nextInt();
-	
+public int menu(){
+		int opcion = 0;
+		boolean seguir = false;
+		while (seguir != true){
+			System.out.println("\n            FORESTWIN");
+			System.out.println("-----------------------------------");
+			System.out.println("\n1- Iniciar sesion");
+			System.out.println("2- Registrarse");
+			System.out.println("3- Mostrar Usuarios");
+			System.out.println("4- Salir");
 		
+		
+			try{
+				System.out.print("Ingrese la opcion que desea ejecutar: ");
+				opcion = scan.nextInt();
+				
+				if(opcion > 0 && opcion < 5){
+					seguir = true;
+					
+				}else{
+					System.out.println("\n***ESTA OPCION NO ES VALIDA***\n");
+				}
+			}catch(Exception e){
+				System.out.println("\n***LA OPCION DEBE SER NUMERICA***\n");
+				scan.nextLine();
+			}
+		}
 		return opcion;
 		
 	}
