@@ -508,22 +508,38 @@ public int menu(){
 		return cerrar;
 	}
 	
-	public boolean salirPrograma(){
+		public boolean salirPrograma(){
 		boolean cerrar = false;
-		System.out.println("\n QUIERES SALIR DEL PROGRAMA? ");
-		
-		System.out.println("1- Si");
-		System.out.println("2- No");
-		
-		System.out.print("=: ");
-		
-		int salir = scan.nextInt();
-		if(salir == 1){
-			System.out.println("-----------------------------------------");
-			System.out.println("GRACIAS POR UTILIZAR NUESTRA PLATAFORMA");
-			System.out.println("-----------------------------------------\n");
-			System.out.println("              FORESTWIN.\n");
-			cerrar = true;
+		boolean seguir = false;
+		while (seguir != true){
+			System.out.println("\n QUIERES SALIR DEL PROGRAMA? ");
+			
+			System.out.println("1- Si");
+			System.out.println("2- No");
+			try {
+				System.out.print("=: ");
+				int salir = scan.nextInt();
+				
+			
+				if(salir == 1){
+					System.out.println("-----------------------------------------");
+					System.out.println("GRACIAS POR UTILIZAR NUESTRA PLATAFORMA");
+					System.out.println("-----------------------------------------\n");
+					System.out.println("              FORESTWIN.\n");
+					cerrar = true;
+					seguir = true;
+				}else if(salir == 2){
+					System.out.println("-----------------------------------------");
+					System.out.println("     QUE BUENO QUE SIGUES AQUI (:");
+					System.out.println("-----------------------------------------\n");
+					seguir = true;
+				}else if(salir > 2 || salir <= 0){
+					System.out.println("\n***ESTA OPCION NO ES VALIDA***\n");
+				}
+			}catch(Exception e){
+				System.out.println("\n***DEBES INDICAR CON UN 1 O 2 ***\n");
+				scan.nextLine();
+			}
 		}
 		
 		return cerrar;
