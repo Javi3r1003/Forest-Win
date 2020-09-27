@@ -35,7 +35,7 @@ class vista{
 //-------------------------------------------Métodos oara los menú
 
 	//Método para imprimir el menú principal y pedir las opciones al usuario
-public int menu(){
+	public int menu(){
 		int opcion = 0;
 		boolean seguir = false;
 		while (seguir != true){
@@ -67,7 +67,7 @@ public int menu(){
 	}
 	
 	//Método para imprimir el sub menú y pedirle las opciones al usuario
-		public int subMenu(){
+	public int subMenu(){
 		int opcion = 0;
 		boolean seguir = false;
 		while (seguir != true){
@@ -75,14 +75,15 @@ public int menu(){
 			System.out.println("2- Filtros de busqueda(pendiente)");//funcionalidad pendiente
 			System.out.println("3- Agregar Especie");
 			System.out.println("4- Eliminar especie");
-			System.out.println("5- Salir");
+			System.out.println("5- Modificar especie");
+			System.out.println("6- Salir");
 		
 		
 			try{
 				System.out.print("Ingrese la opcion que desea ejecutar: ");
 				opcion = scan.nextInt();
 				
-				if(opcion > 0 && opcion < 6){
+				if(opcion > 0 && opcion < 7){
 					seguir = true;
 					
 				}else{
@@ -97,7 +98,7 @@ public int menu(){
 		return opcion;
 	}
 	
-//Método para pedir datos al usuario del terreno e imprimir los árboles que cumplen con las condicones
+	//Método para pedir datos al usuario del terreno e imprimir los árboles que cumplen con las condicones
 	public void filtrosDeBusqueda()
 	{
 		float maxp = 1;
@@ -420,9 +421,8 @@ public int menu(){
 			a.GuardarDatos(arboles);
 			
 			System.out.println("-----------------------------------");
-			System.out.println("  ESPECIE AGREGADA CORRECTMENTE");
+			System.out.println("  ESPECIE AGREGADA CORRECTAMENTE");
 			System.out.println("-----------------------------------");
-			a.GuardarDatos(arboles);
 		}else{
 			System.out.println("************************************************");
 			System.out.println("ESPECIE YA EXISTENTE, INGRESE UNA NO REGISTRADA");
@@ -450,7 +450,7 @@ public int menu(){
 			
 		if(existente == true){
 			System.out.println("-----------------------------------");
-			System.out.println("  ESPECIE ELIMINADA CORRECTMENTE");
+			System.out.println("  ESPECIE ELIMINADA CORRECTAMENTE");
 			System.out.println("-----------------------------------");
 			a.GuardarDatos(arboles);
 			
@@ -459,6 +459,96 @@ public int menu(){
 			System.out.println("ESPECIE NO ENCONTRADA, NO SE ELIMINO NINGUNA ESPECIE");
 			System.out.println("*******************************************************");
 		}
+	}
+	
+	public void modificarArboles(){
+		ArrayList<Arbol> arboles = a.leerArboles();
+		System.out.print("\nIngrese la especie del arbol que desea modificar: ");
+		String especie = scan.next();
+		boolean existente = false;
+		Arbol arbolModificar = null;
+		for(int i = 0 ; i<arboles.size() ; i ++ ){
+			Arbol arbolTemporal = arboles.get(i);
+			if(especie.equals(arbolTemporal.getEspecie())){
+				arbolModificar = arbolTemporal;
+				arboles.remove(i);
+				existente = true;
+			}
+		}
+		
+		if(existente == true){
+			System.out.println("\n-------NOMBRE DE LA ESPECIE A MODIFICAR: " + especie);
+			
+			System.out.print("\nIngrese el nuevo nombre del arbol: ");
+			String especieN = scan.next();
+			arbolModificar.setEspecie(especieN);
+			
+			System.out.print("\nIngrese la precipitacion maxima(mm): ");
+			float premax = scan.nextFloat();
+			
+			System.out.print("\nIngrese la precipitacion minima(mm): ");
+			float premin = scan.nextFloat();
+			
+			
+			System.out.println("\nIngrese el tipo de iluminacion(solo un tipo): ");
+			System.out.println("Alta");
+			System.out.println("Media");
+			System.out.println("Baja");
+			System.out.print("=: ");
+			String ilum = scan.next();
+			
+			arbolModificar.setIluminacion(ilum);
+			
+			
+			System.out.print("\nIngrese la temperatura maxima(Celsius): ");
+			float tempmax = scan.nextFloat();
+			
+			
+			System.out.print("\nIngrese la temperatura minima(Celsius): ");
+			float tempmin = scan.nextFloat();
+			
+			System.out.println("\nIngrese las utilidades del arbol, separelo por comas(una utilidad)");
+			System.out.println("Maderable");
+			System.out.println("Latex");
+			System.out.println("Lena");
+			System.out.println("Comestible");
+			System.out.println("Medicinal");
+			System.out.println("Forraje");
+			System.out.println("Ornamental");
+			System.out.print("=: ");
+			String utilidades = scan.next();
+			
+			arbolModificar.setUtilidades(utilidades);
+			
+
+			float precipitacion = ((premin+premax)/2.0f);
+			float deltaPre = (premax-precipitacion);
+			
+			arbolModificar.setPrecipitacion(precipitacion);
+			arbolModificar.setDeltaPre(deltaPre);
+			
+			float temperatura = ((tempmax+tempmin)/2.0f);
+			float deltaTem = (tempmax-temperatura);
+			
+			arbolModificar.setTemperatura(temperatura);
+			arbolModificar.setDeltaTem(deltaTem);
+
+
+			arboles.add(arbolModificar);
+			a.GuardarDatos(arboles);
+			
+			System.out.println("-----------------------------------");
+			System.out.println("  ESPECIE MODIFICADA CORRECTAMENTE");
+			System.out.println("-----------------------------------");
+			a.GuardarDatos(arboles);
+			
+		}else{
+			System.out.println("*******************************************************");
+			System.out.println(" ESPECIE NO ENCONTRADA, NO SE MODIFICO NINGUNA ESPECIE");
+			System.out.println("*******************************************************");
+			
+		}
+		
 	}
 	
 	//Método que simplemente imprime los Strings de un método de la clase Archivos
@@ -508,7 +598,7 @@ public int menu(){
 		return cerrar;
 	}
 	
-		public boolean salirPrograma(){
+	public boolean salirPrograma(){
 		boolean cerrar = false;
 		boolean seguir = false;
 		while (seguir != true){
