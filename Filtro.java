@@ -23,7 +23,7 @@ public class filtro
 	//Método de filtracion
 	public String filtrar(float pre, String ilu, float tem, String uti)
 	{
-		int b = 1;
+		int b = 0;
 		
 		for (int i = 0; i < arboles.size(); i++)
 		{
@@ -37,8 +37,19 @@ public class filtro
 			float t = ar.getTemperatura();
 			float dt = ar.getDeltaTem();
 			
+			
+			if(pre < p+dp)
+			{
+				b =1;
+			}
+			System.out.println("Pre: " + pre);
+			System.out.println("P: " + p);
+			System.out.println("dp: " + dp);
+			System.out.println("P + dp: " + p+dp);
+			
 			if((pre <= (p + dp) && ((p - dp) <= pre)))
 			{
+				System.out.println(p+dp);
 				if(ar.getIluminacion().contains(ilu))
 				{
 					if((tem <= (t + dt)) && ((t - dt) <= tem))
@@ -56,6 +67,7 @@ public class filtro
 		if (b == 1)
 		{
 			return this.toString();
+			//return "equis somos chavos";
 		}		
 		else
 		{
