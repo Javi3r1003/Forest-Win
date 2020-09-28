@@ -42,11 +42,12 @@ public class filtro
 			{
 				b =1;
 			}
+			/*
 			System.out.println("Pre: " + pre);
 			System.out.println("P: " + p);
 			System.out.println("dp: " + dp);
 			System.out.println("P + dp: " + p+dp);
-			
+			*/
 			if((pre <= (p + dp) && ((p - dp) <= pre)))
 			{
 				System.out.println(p+dp);
@@ -66,8 +67,8 @@ public class filtro
 		
 		if (b == 1)
 		{
-			return this.toString();
-			//return "equis somos chavos";
+			//return this.toString();
+			return "equis somos chavos";
 		}		
 		else
 		{
