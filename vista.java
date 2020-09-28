@@ -46,17 +46,19 @@ class vista{
 			System.out.println("3- Mostrar Usuarios");
 			System.out.println("4- Salir");
 		
-		
+			//Se establece el método try para obtener la opción del usuario
 			try{
 				System.out.print("Ingrese la opcion que desea ejecutar: ");
 				opcion = scan.nextInt();
 				
+				//Se verifica el rango de opciones
 				if(opcion > 0 && opcion < 5){
 					seguir = true;
 					
 				}else{
 					System.out.println("\n***ESTA OPCION NO ES VALIDA***\n");
 				}
+				//Se lanza la excepción por si no es un dato númerico
 			}catch(Exception e){
 				System.out.println("\n***LA OPCION DEBE SER NUMERICA***\n");
 				scan.nextLine();
