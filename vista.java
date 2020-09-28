@@ -461,12 +461,16 @@ class vista{
 		}
 	}
 	
+	//Se crea el método modificar árboles
 	public void modificarArboles(){
+		//Se lee invoca al método para leer el txt de árboles
 		ArrayList<Arbol> arboles = a.leerArboles();
 		System.out.print("\nIngrese la especie del arbol que desea modificar: ");
 		String especie = scan.next();
+		//Se establecen los criterios de busqueda para que inicie la acción de pedir y filtrar árboles
 		boolean existente = false;
 		Arbol arbolModificar = null;
+		//Se recorren los árboles buscando similitudes con los criterios del usuario
 		for(int i = 0 ; i<arboles.size() ; i ++ ){
 			Arbol arbolTemporal = arboles.get(i);
 			if(especie.equals(arbolTemporal.getEspecie())){
@@ -476,6 +480,7 @@ class vista{
 			}
 		}
 		
+		//Se le pide al usuario los nuevos datos del árbol
 		if(existente == true){
 			System.out.println("\n-------NOMBRE DE LA ESPECIE A MODIFICAR: " + especie);
 			
@@ -497,6 +502,7 @@ class vista{
 			System.out.print("=: ");
 			String ilum = scan.next();
 			
+			//Se modifican las propiedades del árbol
 			arbolModificar.setIluminacion(ilum);
 			
 			
@@ -533,10 +539,13 @@ class vista{
 			arbolModificar.setTemperatura(temperatura);
 			arbolModificar.setDeltaTem(deltaTem);
 
+			//Se modifica la lista de árboles
 
 			arboles.add(arbolModificar);
+			//Se modifica el txt de árboles
 			a.GuardarDatos(arboles);
 			
+			//Se indica que se modificó la lista
 			System.out.println("-----------------------------------");
 			System.out.println("  ESPECIE MODIFICADA CORRECTAMENTE");
 			System.out.println("-----------------------------------");
