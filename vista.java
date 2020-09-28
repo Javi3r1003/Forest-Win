@@ -212,7 +212,9 @@ class vista{
 				
 			}
 			
+			//Se establece el try del método
 			try{ 
+				//Se verifica que el nombre ingresado por el usuario se encuentre en la base de datos
 				if(nombre.equals(usuarioTemp.getNombre())){
 					comprobadorUsuario = true;
 					
@@ -221,12 +223,14 @@ class vista{
 				
 			}
 			
+			//Si se verifica la existencia del usuario se solicita la contraseña
 			if(comprobadorUsuario == true){
 				
 				
 				System.out.print("Ingrese su contrasena: ");
 				String contra = scan.next();
 			
+				//Se verifica la contraseña con la del usuario que se verifico anteriormente
 				try {	
 					if(contra.equals(usuarioTemp.getContrasena())){
 						comprobadorContrasena = true;	
@@ -235,7 +239,7 @@ class vista{
 					
 				}
 				
-				
+				//En caso de lograr logear se le muestra al usuario
 				if(comprobadorContrasena == true){
 					System.out.println("-------------------------------------");
 					System.out.println("          INICIANDO SESION...");
