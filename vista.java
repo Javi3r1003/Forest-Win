@@ -46,19 +46,17 @@ class vista{
 			System.out.println("3- Mostrar Usuarios");
 			System.out.println("4- Salir");
 		
-			//Se establece el método try para obtener la opción del usuario
+		
 			try{
 				System.out.print("Ingrese la opcion que desea ejecutar: ");
 				opcion = scan.nextInt();
 				
-				//Se verifica el rango de opciones
 				if(opcion > 0 && opcion < 5){
 					seguir = true;
 					
 				}else{
 					System.out.println("\n***ESTA OPCION NO ES VALIDA***\n");
 				}
-				//Se lanza la excepción por si no es un dato númerico
 			}catch(Exception e){
 				System.out.println("\n***LA OPCION DEBE SER NUMERICA***\n");
 				scan.nextLine();
@@ -212,9 +210,7 @@ class vista{
 				
 			}
 			
-			//Se establece el try del método
 			try{ 
-				//Se verifica que el nombre ingresado por el usuario se encuentre en la base de datos
 				if(nombre.equals(usuarioTemp.getNombre())){
 					comprobadorUsuario = true;
 					
@@ -223,14 +219,12 @@ class vista{
 				
 			}
 			
-			//Si se verifica la existencia del usuario se solicita la contraseña
 			if(comprobadorUsuario == true){
 				
 				
 				System.out.print("Ingrese su contrasena: ");
 				String contra = scan.next();
 			
-				//Se verifica la contraseña con la del usuario que se verifico anteriormente
 				try {	
 					if(contra.equals(usuarioTemp.getContrasena())){
 						comprobadorContrasena = true;	
@@ -239,7 +233,7 @@ class vista{
 					
 				}
 				
-				//En caso de lograr logear se le muestra al usuario
+				
 				if(comprobadorContrasena == true){
 					System.out.println("-------------------------------------");
 					System.out.println("          INICIANDO SESION...");
@@ -271,7 +265,8 @@ class vista{
 		
 	}
 	
-		private int tipoUsuario(){
+	
+	private int tipoUsuario(){
 		
 		int tipo = 0;
 		System.out.println("\nIngrese el tipo de usuario que desea crear.");
@@ -302,11 +297,8 @@ class vista{
 		
 		return tipo;
 	}
-	
-	
-	
 	//creamos cada uno de los usuarios y lo mandamos al método de nuevoU de archivos para guardarlo en el txt
-public void crear(){
+	public void crear(){
 		int tipo = tipoUsuario();
 		//ArrayList para almacenar objetos de tipo usuario extraídos de la base de datos 
 		ArrayList<usuario> usuariosRep = a.leerUsuarios();
@@ -552,16 +544,12 @@ public void crear(){
 		}
 	}
 	
-	//Se crea el método modificar árboles
 	public void modificarArboles(){
-		//Se lee invoca al método para leer el txt de árboles
 		ArrayList<Arbol> arboles = a.leerArboles();
 		System.out.print("\nIngrese la especie del arbol que desea modificar: ");
 		String especie = scan.next();
-		//Se establecen los criterios de busqueda para que inicie la acción de pedir y filtrar árboles
 		boolean existente = false;
 		Arbol arbolModificar = null;
-		//Se recorren los árboles buscando similitudes con los criterios del usuario
 		for(int i = 0 ; i<arboles.size() ; i ++ ){
 			Arbol arbolTemporal = arboles.get(i);
 			if(especie.equals(arbolTemporal.getEspecie())){
@@ -571,7 +559,6 @@ public void crear(){
 			}
 		}
 		
-		//Se le pide al usuario los nuevos datos del árbol
 		if(existente == true){
 			System.out.println("\n-------NOMBRE DE LA ESPECIE A MODIFICAR: " + especie);
 			
@@ -593,7 +580,6 @@ public void crear(){
 			System.out.print("=: ");
 			String ilum = scan.next();
 			
-			//Se modifican las propiedades del árbol
 			arbolModificar.setIluminacion(ilum);
 			
 			
@@ -630,13 +616,10 @@ public void crear(){
 			arbolModificar.setTemperatura(temperatura);
 			arbolModificar.setDeltaTem(deltaTem);
 
-			//Se modifica la lista de árboles
 
 			arboles.add(arbolModificar);
-			//Se modifica el txt de árboles
 			a.GuardarDatos(arboles);
 			
-			//Se indica que se modificó la lista
 			System.out.println("-----------------------------------");
 			System.out.println("  ESPECIE MODIFICADA CORRECTAMENTE");
 			System.out.println("-----------------------------------");
