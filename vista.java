@@ -569,40 +569,113 @@ class vista{
 		
 		//Si la especie no existe se le piden los datos al usuario de la especia a agregar
 		if(existente == false){
-			System.out.print("\nIngrese la precipitacion maxima(mm): ");
-			float premax = scan.nextFloat();
+			float premax = 0;
+			boolean validarPremax = false;
+			while(validarPremax != true){
+				System.out.print("\nIngrese la precipitacion maxima(mm): ");
+				try{
+					premax = scan.nextFloat();
+					validarPremax = true;
+				}catch (Exception e){
+					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+					scan.nextLine();
+				}
+			}
 			
-			System.out.print("\nIngrese la precipitacion minima(mm): ");
-			float premin = scan.nextFloat();
+			float premin = 0;
+			boolean validarPremin = false;
+			while(validarPremin != true){
+				System.out.print("\nIngrese la precipitacion minima(mm): ");
+				try{
+					premin = scan.nextFloat();
+					validarPremin = true;
+				}
+				catch (Exception e){
+					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+					scan.nextLine();
+				}
+			}
 			
+			ArrayList<String> iluminaciones = new ArrayList<String>(Arrays.asList("Alta" , "Media" , "Baja"));
 			
-			System.out.println("\nIngrese el tipo de iluminacion(solo un tipo): ");
-			System.out.println("Alta");
-			System.out.println("Media");
-			System.out.println("Baja");
-			System.out.print("=: ");
-			String ilum = scan.next();
-			scan.nextLine();
+			String textIluminaciones = "";
+			boolean validarIluminacion = false;
+			while(validarIluminacion != true){
+				System.out.println("\n-Ingrese las iluminaciones que desea(numero)");
+				for(int i = 0 ; i<iluminaciones.size() ; i++){
+					System.out.println((i+1) + "- " + iluminaciones.get(i));
+				}
+				System.out.print("=: ");
+				
+				try{
+					int opcionIlum = scan.nextInt();
+					if(opcionIlum > 0 && opcionIlum <= iluminaciones.size()){
+						textIluminaciones += iluminaciones.get(opcionIlum-1) + ", ";
+						iluminaciones.remove(opcionIlum-1);
+						
+						if(iluminaciones.size() != 0){
+							boolean otraIluminacion = false;
+							while(otraIluminacion != true){
+								System.out.println("\n-Desea agregar otra luminacion?");
+								System.out.println("1- Si");
+								System.out.println("2- No");
+								System.out.print("=: ");
+								try{
+									int otro = scan.nextInt();
+									if(otro == 1){
+										otraIluminacion = true;
+									}else if(otro == 2){
+										otraIluminacion = true;
+										validarIluminacion = true;
+									}else if(otro > 2 || otro <= 0){
+										System.out.println("\n***OPCION INVALIDA***\n");
+									}
+								}catch(Exception e){
+									System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+									scan.nextLine();
+								}
+							}
+							
+						}else if(iluminaciones.size() == 0){
+							validarIluminacion = true;
+						}
+					}else if(opcionIlum <= 0 || opcionIlum > iluminaciones.size()){
+						System.out.println("\n***OPCION INVALIDA***\n");
+					}
+				}catch(Exception e){
+					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+					scan.nextLine();
+				}
+			}
 			
+			float tempmax = 0;
+			boolean validarTempmax = false;
+			while(validarTempmax != true){
+				System.out.print("\nIngrese la temperatura maxima(Celsius): ");
+				try{
+					tempmax = scan.nextFloat();
+					validarTempmax = true;
+				}catch(Exception e){
+					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+					scan.nextLine();
+				}
+			}
 			
+			float tempmin = 0;
+			boolean validarTempmin = false;
+			while(validarTempmin != true){
+				System.out.print("\nIngrese la temperatura minima(Celsius): ");
+				try{
+					tempmin = scan.nextFloat();
+					validarTempmin = true;
+				}catch(Exception e){
+					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+					scan.nextLine();
+				}					
+			}
 			
-			System.out.print("\nIngrese la temperatura maxima(Celsius): ");
-			float tempmax = scan.nextFloat();
+			ArrayList<String> utilidades = new ArrayList<String>(Arrays.asList("Maderable" , "Latex" , "Lena" , "Comestible" , "Medicinal" , "Forraje" , "Ornamental"));
 			
-			
-			System.out.print("\nIngrese la temperatura minima(Celsius): ");
-			float tempmin = scan.nextFloat();
-			
-			System.out.println("\nIngrese las utilidades del arbol, separelo por comas(una utilidad)");
-			System.out.println("Maderable");
-			System.out.println("Latex");
-			System.out.println("Lena");
-			System.out.println("Comestible");
-			System.out.println("Medicinal");
-			System.out.println("Forraje");
-			System.out.println("Ornamental");
-			System.out.print("=: ");
-			String utilidades = scan.next();
 			String textUtilidades = "";
 			boolean validarUtilidades = false;
 			while(validarUtilidades != true){
@@ -611,13 +684,13 @@ class vista{
 					System.out.println((i+1) + "- " + utilidades.get(i));
 				}
 				System.out.print("=: ");
-
+				
 				try{
 					int opcionUtilidad = scan.nextInt();
 					if(opcionUtilidad > 0 && opcionUtilidad <= utilidades.size()){
 						textUtilidades += utilidades.get(opcionUtilidad-1) + ", ";
 						utilidades.remove(opcionUtilidad-1);
-
+						
 						if(utilidades.size() != 0){
 							boolean otraUtilidad = false;
 							while(otraUtilidad != true){
@@ -640,7 +713,7 @@ class vista{
 									scan.nextLine();
 								}
 							}
-
+							
 						}else if(utilidades.size() == 0){
 							validarUtilidades = true;
 						}
@@ -652,7 +725,6 @@ class vista{
 					scan.nextLine();
 				}
 			}
-
 			
 			//Calculos para obtener la tempratura promedio y un delta de los valroes flaot
 			float precipitacion = ((premin+premax)/2.0f);
@@ -661,7 +733,7 @@ class vista{
 			float temperatura = ((tempmax+tempmin)/2.0f);
 			float deltaTem = (tempmax-temperatura);
 			//Instanciar el objeto 
-			Arbol nuevoArbol = new Arbol(especie, precipitacion, deltaPre, ilum, temperatura, deltaTem, utilidades);
+			Arbol nuevoArbol = new Arbol(especie, precipitacion, deltaPre, textIluminaciones, temperatura, deltaTem, textUtilidades);
 			//gaurdar el objeto en el ArrayList
 			arboles.add(nuevoArbol);
 			//Sobrescribir la lista de la base de datos
@@ -675,127 +747,6 @@ class vista{
 			System.out.println("ESPECIE YA EXISTENTE, INGRESE UNA NO REGISTRADA");
 			System.out.println("************************************************");
 		}
-	}
-	//Método para Eliminar especies de la base de datos
-	public void eliminarArbol(){
-		
-		//Variable que cambiará si el usuario existe o no
-		boolean existente = false;
-		//ArrayList que almacenará objetos de tipo Arbol estraido de la base de datos
-		ArrayList <Arbol> arboles = a.leerArboles();
-		System.out.print("\nIngrese la especie del arbol que desea eliminar: ");
-		String especie = scan.next();
-		
-		for(int i = 0 ; i<arboles.size() ; i++){
-			Arbol arbolTemporal = arboles.get(i);
-			//comprobar si la especie agregada ya existe y si es así, la elimina
-			if(especie.equals(arbolTemporal.getEspecie())){
-				existente = true;
-				arboles.remove(i);
-			}
-		}
-			
-		if(existente == true){
-			System.out.println("-----------------------------------");
-			System.out.println("  ESPECIE ELIMINADA CORRECTAMENTE");
-			System.out.println("-----------------------------------");
-			a.GuardarDatos(arboles);
-			
-		}else{
-			System.out.println("*******************************************************");
-			System.out.println("ESPECIE NO ENCONTRADA, NO SE ELIMINO NINGUNA ESPECIE");
-			System.out.println("*******************************************************");
-		}
-	}
-	
-	public void modificarArboles(){
-		ArrayList<Arbol> arboles = a.leerArboles();
-		System.out.print("\nIngrese la especie del arbol que desea modificar: ");
-		String especie = scan.next();
-		boolean existente = false;
-		Arbol arbolModificar = null;
-		for(int i = 0 ; i<arboles.size() ; i ++ ){
-			Arbol arbolTemporal = arboles.get(i);
-			if(especie.equals(arbolTemporal.getEspecie())){
-				arbolModificar = arbolTemporal;
-				arboles.remove(i);
-				existente = true;
-			}
-		}
-		
-		if(existente == true){
-			System.out.println("\n-------NOMBRE DE LA ESPECIE A MODIFICAR: " + especie);
-			
-			System.out.print("\nIngrese el nuevo nombre del arbol: ");
-			String especieN = scan.next();
-			arbolModificar.setEspecie(especieN);
-			
-			System.out.print("\nIngrese la precipitacion maxima(mm): ");
-			float premax = scan.nextFloat();
-			
-			System.out.print("\nIngrese la precipitacion minima(mm): ");
-			float premin = scan.nextFloat();
-			
-			
-			System.out.println("\nIngrese el tipo de iluminacion(solo un tipo): ");
-			System.out.println("Alta");
-			System.out.println("Media");
-			System.out.println("Baja");
-			System.out.print("=: ");
-			String ilum = scan.next();
-			
-			arbolModificar.setIluminacion(ilum);
-			
-			
-			System.out.print("\nIngrese la temperatura maxima(Celsius): ");
-			float tempmax = scan.nextFloat();
-			
-			
-			System.out.print("\nIngrese la temperatura minima(Celsius): ");
-			float tempmin = scan.nextFloat();
-			
-			System.out.println("\nIngrese las utilidades del arbol, separelo por comas(una utilidad)");
-			System.out.println("Maderable");
-			System.out.println("Latex");
-			System.out.println("Lena");
-			System.out.println("Comestible");
-			System.out.println("Medicinal");
-			System.out.println("Forraje");
-			System.out.println("Ornamental");
-			System.out.print("=: ");
-			String utilidades = scan.next();
-			
-			arbolModificar.setUtilidades(utilidades);
-			
-
-			float precipitacion = ((premin+premax)/2.0f);
-			float deltaPre = (premax-precipitacion);
-			
-			arbolModificar.setPrecipitacion(precipitacion);
-			arbolModificar.setDeltaPre(deltaPre);
-			
-			float temperatura = ((tempmax+tempmin)/2.0f);
-			float deltaTem = (tempmax-temperatura);
-			
-			arbolModificar.setTemperatura(temperatura);
-			arbolModificar.setDeltaTem(deltaTem);
-
-
-			arboles.add(arbolModificar);
-			a.GuardarDatos(arboles);
-			
-			System.out.println("-----------------------------------");
-			System.out.println("  ESPECIE MODIFICADA CORRECTAMENTE");
-			System.out.println("-----------------------------------");
-			a.GuardarDatos(arboles);
-			
-		}else{
-			System.out.println("*******************************************************");
-			System.out.println(" ESPECIE NO ENCONTRADA, NO SE MODIFICO NINGUNA ESPECIE");
-			System.out.println("*******************************************************");
-			
-		}
-		
 	}
 	
 	//Método que simplemente imprime los Strings de un método de la clase Archivos
