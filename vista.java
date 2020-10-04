@@ -306,39 +306,54 @@ class vista{
 	
 	
 	//creamos cada uno de los usuarios y lo mandamos al método de nuevoU de archivos para guardarlo en el txt
-	public void crear(){
+public void crear(){
+		int tipo = tipoUsuario();
 		//ArrayList para almacenar objetos de tipo usuario extraídos de la base de datos 
 		ArrayList<usuario> usuariosRep = a.leerUsuarios();
 		usuario usuarioTemp;
 		
-		System.out.print("Ingrese su nombre de usuario: ");
-		String nombre = scan.next();
-		
-		
-		//si el archivo existe lo leera y sino lo creará
-		if(usuariosRep != null){
+		if(tipo == 1){
+			System.out.print("Ingrese su nombre de usuario: ");
+			String nombre = scan.next();
 			
-			int contador=0;
-			//recorrer el ArrayList
-			for(int i = 0 ; i<usuariosRep.size() ; i++){
-				//objeto temporal de tipo usuario
-				usuarioTemp = usuariosRep.get(i);
-				//se compueba si existe el nombre de usuario
-				if(nombre.equals(usuarioTemp.getNombre())){
-					contador = 1;
+			
+			//si el archivo existe lo leera y sino lo creará
+			if(usuariosRep != null){
 				
+				int contador=0;
+				//recorrer el ArrayList
+				for(int i = 0 ; i<usuariosRep.size() ; i++){
+					//objeto temporal de tipo usuario
+					usuarioTemp = usuariosRep.get(i);
+					//se compueba si existe el nombre de usuario
+					if(nombre.equals(usuarioTemp.getNombre())){
+						contador = 1;
+					
+					}
 				}
-			}
-			
-			//condicionales si el usuario existe o no
-			if(contador != 0){
-				System.out.println("**************************");
-				System.out.println("USURARIO YA REGISTRADO");
-				System.out.println("**************************");
+				
+				//condicionales si el usuario existe o no
+				if(contador != 0){
+					System.out.println("**************************");
+					System.out.println("USURARIO YA REGISTRADO");
+					System.out.println("**************************");
+				}else{
+					System.out.print("Ingrese su contrasena: ");
+					String contra = scan.next();
+
+					//instancia de usuario estandar
+					estandar u = new estandar(nombre, contra);
+					usuariosRep.add(u);
+					a.nuevoU(usuariosRep);
+					System.out.println("-----------------------------------");
+					System.out.println("USUARIO REGISTRADO EXITOSAMENTE");
+					System.out.println("-----------------------------------");
+				}
 			}else{
 				System.out.print("Ingrese su contrasena: ");
 				String contra = scan.next();
-				usuario u = new usuario(nombre, contra);
+				usuariosRep = new ArrayList<usuario>();
+				estandar u = new estandar(nombre, contra);
 				usuariosRep.add(u);
 				a.nuevoU(usuariosRep);
 				System.out.println("-----------------------------------");
@@ -346,19 +361,57 @@ class vista{
 				System.out.println("-----------------------------------");
 			}
 			
-		}else{
-			System.out.print("Ingrese su contrasena: ");
-			String contra = scan.next();
-			usuariosRep = new ArrayList<usuario>();
-			usuario u = new usuario(nombre, contra);
-			usuariosRep.add(u);
-			a.nuevoU(usuariosRep);
-			System.out.println("-----------------------------------");
-			System.out.println("USUARIO REGISTRADO EXITOSAMENTE");
-			System.out.println("-----------------------------------");
-		}
+		}else if(tipo == 2){
+			System.out.print("Ingrese su nombre de usuario: ");
+			String nombre = scan.next();
 			
-		
+			
+			//si el archivo existe lo leera y sino lo creará
+			if(usuariosRep != null){
+				
+				int contador=0;
+				//recorrer el ArrayList
+				for(int i = 0 ; i<usuariosRep.size() ; i++){
+					//objeto temporal de tipo usuario
+					usuarioTemp = usuariosRep.get(i);
+					//se compueba si existe el nombre de usuario
+					if(nombre.equals(usuarioTemp.getNombre())){
+						contador = 1;
+					
+					}
+				}
+				
+				//condicionales si el usuario existe o no
+				if(contador != 0){
+					System.out.println("**************************");
+					System.out.println("USURARIO YA REGISTRADO");
+					System.out.println("**************************");
+				}else{
+					System.out.print("Ingrese su contrasena: ");
+					String contra = scan.next();
+
+					//instancia de usuario administrador
+					administrador u = new administrador(nombre, contra);
+					usuariosRep.add(u);
+					a.nuevoU(usuariosRep);
+					System.out.println("-----------------------------------");
+					System.out.println("USUARIO REGISTRADO EXITOSAMENTE");
+					System.out.println("-----------------------------------");
+				}
+
+			}else{
+				System.out.print("Ingrese su contrasena: ");
+				String contra = scan.next();
+				usuariosRep = new ArrayList<usuario>();
+				administrador u = new administrador(nombre, contra);
+				usuariosRep.add(u);
+				a.nuevoU(usuariosRep);
+				System.out.println("-----------------------------------");
+				System.out.println("USUARIO REGISTRADO EXITOSAMENTE");
+				System.out.println("-----------------------------------");
+			}
+			
+		}
 	}
 	
 	//Método para imprimir los usuarios existentes
