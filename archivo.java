@@ -124,3 +124,13 @@ class archivo{
         }
 		
 	}
+	
+	//Método que devuelve el string de los árboles filtrados
+	public String filtrado(float p, String i, float t, String u)
+	{
+		filtro fil = new filtro();
+		return fil.filtrar(p,i,t,u);
+		
+	}
+
+}
