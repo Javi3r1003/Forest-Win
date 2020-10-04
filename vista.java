@@ -603,6 +603,56 @@ class vista{
 			System.out.println("Ornamental");
 			System.out.print("=: ");
 			String utilidades = scan.next();
+			String textUtilidades = "";
+			boolean validarUtilidades = false;
+			while(validarUtilidades != true){
+				System.out.println("\n-Ingrese las utilidades que desea(numero)");
+				for(int i = 0 ; i<utilidades.size() ; i++){
+					System.out.println((i+1) + "- " + utilidades.get(i));
+				}
+				System.out.print("=: ");
+
+				try{
+					int opcionUtilidad = scan.nextInt();
+					if(opcionUtilidad > 0 && opcionUtilidad <= utilidades.size()){
+						textUtilidades += utilidades.get(opcionUtilidad-1) + ", ";
+						utilidades.remove(opcionUtilidad-1);
+
+						if(utilidades.size() != 0){
+							boolean otraUtilidad = false;
+							while(otraUtilidad != true){
+								System.out.println("\n-Desea agregar otra utilidad?");
+								System.out.println("1- Si");
+								System.out.println("2- No");
+								System.out.print("=: ");
+								try{
+									int otro = scan.nextInt();
+									if(otro == 1){
+										otraUtilidad = true;
+									}else if(otro == 2){
+										otraUtilidad = true;
+										validarUtilidades = true;
+									}else if(otro > 2 || otro <= 0){
+										System.out.println("\n***OPCION INVALIDA***\n");
+									}
+								}catch(Exception e){
+									System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+									scan.nextLine();
+								}
+							}
+
+						}else if(utilidades.size() == 0){
+							validarUtilidades = true;
+						}
+					}else if(opcionUtilidad <= 0 || opcionUtilidad > utilidades.size()){
+						System.out.println("\n***OPCION INVALIDA***\n");
+					}
+				}catch(Exception e){
+					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+					scan.nextLine();
+				}
+			}
+
 			
 			//Calculos para obtener la tempratura promedio y un delta de los valroes flaot
 			float precipitacion = ((premin+premax)/2.0f);
