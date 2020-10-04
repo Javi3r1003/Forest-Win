@@ -27,6 +27,7 @@ class archivo{
 		 try{
             //Instanciar el guardador de base de datos
             ObjectOutputStream GuardarDatos = new ObjectOutputStream(new FileOutputStream("Usuarios.forestwin"));
+	
 
             // Escribir la Base de datos de Usuarios
             GuardarDatos.writeObject(usuarios);
@@ -57,7 +58,9 @@ class archivo{
 	public ArrayList<usuario> leerUsuarios(){
 		try{
             //Instanciar el lector de base de datos
+			
             ObjectInputStream AbrirDatos = new ObjectInputStream(new FileInputStream("Usuarios.forestwin"));
+
 
             //Leer la Base de datos de usuarios
             ArrayList<usuario> UsuariosTemp= (ArrayList<usuario>) AbrirDatos.readObject();
@@ -104,11 +107,11 @@ class archivo{
 			for (int i = 0; i < ListaArboles_recuperada.size(); i++) {
 				temp = ListaArboles_recuperada.get(i);
 				Retornar = Retornar + "Especie: " + temp.getEspecie() + "\n";
-				Retornar = Retornar + "Precipitacion Maxima: " + temp.getPrecipitacion() + "\n";
-				Retornar = Retornar + "Precipitacion Minima: " + temp.getDeltaPre() + "\n";
+				Retornar = Retornar + "Precipitacion Maxima: " + (temp.getPrecipitacion()+temp.getDeltaPre()) + "\n";
+				Retornar = Retornar + "Precipitacion Minima: " + (temp.getPrecipitacion()-temp.getDeltaPre()) + "\n";
 				Retornar = Retornar + "Tipo de Iluminacion: " + temp.getIluminacion() + "\n";
-				Retornar = Retornar + "Temperatura Maxima: " + temp.getTemperatura() + "\n";
-				Retornar = Retornar + "Temperatura Minima: " + temp.getDeltaTem() + "\n";
+				Retornar = Retornar + "Temperatura Maxima: " + (temp.getTemperatura()+temp.getDeltaTem()) + "\n";
+				Retornar = Retornar + "Temperatura Minima: " + (temp.getTemperatura()-temp.getDeltaTem()) + "\n";
 				Retornar = Retornar + "Utilidades: " + temp.getUtilidades() + "\n";
 				Retornar = Retornar + "----------------------------------------------\n";
 			}
@@ -121,5 +124,3 @@ class archivo{
         }
 		
 	}
-
-}
