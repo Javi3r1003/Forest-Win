@@ -180,6 +180,36 @@ class vista{
 		System.out.println(a.filtrado(p, ilum, t, util));
 	}
 	
+		public int menuEstandar(){
+		int opcion = 0;
+		boolean seguir = false;
+		while (seguir != true){
+			System.out.println("\n1- Mostrar todos los arboles existentes");
+			System.out.println("2- Filtros de busqueda(pendiente)");//funcionalidad pendiente
+			System.out.println("3- Ver ONG forestales");
+			System.out.println("4- Realizar Donacion");
+			System.out.println("5- Salir");
+		
+		
+			try{
+				System.out.print("Ingrese la opcion que desea ejecutar: ");
+				opcion = scan.nextInt();
+				
+				if(opcion > 0 && opcion < 6){
+					seguir = true;
+					
+				}else{
+					System.out.println("\n***ESTA OPCION NO ES VALIDA***\n");
+					
+				}
+			}catch(Exception e){
+				System.out.println("\n***LA OPCION DEBE SER NUMERICA***\n");
+				scan.nextLine();
+			}
+		}
+		return opcion;
+	}
+	
 	
 //---------------------------------------------------Métodos para los uauarios
 
