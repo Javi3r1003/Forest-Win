@@ -271,6 +271,38 @@ class vista{
 		
 	}
 	
+		private int tipoUsuario(){
+		
+		int tipo = 0;
+		System.out.println("\nIngrese el tipo de usuario que desea crear.");
+		System.out.println("1- Estandar.");
+		System.out.println("2- Administrador.");
+		
+		try {
+			System.out.print("=: ");
+			tipo = scan.nextInt();
+			
+		
+			if(tipo == 1){
+				System.out.println("\n-----------------------------------------");
+				System.out.println("     SE CREARA UN USUARIO ESTANDAR");
+				System.out.println("-----------------------------------------\n");
+			}else if(tipo == 2){
+				System.out.println("\n-----------------------------------------");
+				System.out.println("     SE CREARA UN USUARIO ADMINISTRADOR");
+				System.out.println("-----------------------------------------\n");
+			}else if(tipo > 2 || tipo <= 0){
+				System.out.println("\n***ESTA OPCION NO ES VALIDA***\n");
+			}
+		}catch(Exception e){
+			System.out.println("\n***DEBES INDICAR CON UN 1 O 2 ***\n");
+			scan.nextLine();
+		}
+		
+		
+		return tipo;
+	}
+	
 	
 	
 	//creamos cada uno de los usuarios y lo mandamos al método de nuevoU de archivos para guardarlo en el txt
