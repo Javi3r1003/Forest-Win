@@ -1,9 +1,23 @@
-//César Rodrigo Meza Torres 20287
-//Clase filtro
+/***************************************************************************
+									ForestWin
+Proyecto Programación Orientada a Objetos
+ filtro.java (Clase filtro)
+ Autores: Erick Raúl Alvarez Melgar - Carné 20900
+		  Adam Sebastian Rios Kirste - Carné 20616
+		  Juan Pablo Zelada Ramirez - Carné 201004
+		  César Rodrigro Meza Torres - Carné 20287
+		  Alberto Antonio Ortega Romero - Carné 20884
+		  Javier Alejandro Mejía Alecio - Carné 20304
 
+En esta clase se realizará la busqueda de arboles utilizando valores que el
+usuario haya ingresado y poder así mostrarle especies con las que concidan los mismos
+ ****************************************************************************/
+ 
+//se importan las librerías que se utilizarán
 import java.util.Random;
 import java.util.ArrayList;
 
+//clase filctro
 public class filtro 
 {
 	//Propiedades de las clases
@@ -21,14 +35,13 @@ public class filtro
 	}
 	
 	//Método de filtracion
-	public String filtrar(float pre, String ilu, float tem, String uti)
+	public String filtrar(float premax, float premin, String ilu, float temax, float temin, String uti)
 	{
 		int b = 0;
 		
+		//se realiza una busqueda para comparar valores
 		for (int i = 0; i < arboles.size(); i++)
-		{
-			
-			
+		{			
 			Arbol ar = arboles.get(i);
 			
 			float p = ar.getPrecipitacion();
@@ -37,25 +50,16 @@ public class filtro
 			float t = ar.getTemperatura();
 			float dt = ar.getDeltaTem();
 			
+			String ilm = ar.getIluminacion();
+			String u = ar.getUtilidades();
 			
-			if(pre < p+dp)
+			if(((p - dp) <= premin+5) && ((p + dp) >= premax-5))
 			{
-				b =1;
-			}
-			/*
-			System.out.println("Pre: " + pre);
-			System.out.println("P: " + p);
-			System.out.println("dp: " + dp);
-			System.out.println("P + dp: " + p+dp);
-			*/
-			if((pre <= (p + dp) && ((p - dp) <= pre)))
-			{
-				System.out.println(p+dp);
-				if(ar.getIluminacion().contains(ilu))
+				if(ilm.contains(ilu))
 				{
-					if((tem <= (t + dt)) && ((t - dt) <= tem))
-					{
-						if(ar.getUtilidades().contains(uti))
+					if (((t - dt) <= temin+1) && ((t + dt) >= temax-1))
+					{						
+						if(u.contains(uti))
 						{
 							b = 1;
 							filtrados.add(ar);
@@ -67,15 +71,14 @@ public class filtro
 		
 		if (b == 1)
 		{
-			//return this.toString();
-			return "equis somos chavos";
+			//se retorna un string con los valores necesarios
+			return this.toString();
 		}		
 		else
 		{
 			return "No se encontro ningun arbol que cumpla con las caracteristicas";
 		}
-		
-		
+				
 	}
 	
 	//Método para convertir la lista en string
@@ -84,7 +87,21 @@ public class filtro
 		String s = "";
 		for(int i = 0; i < filtrados.size(); i++)
 		{
-			s +=  "Nombre: " + filtrados.get(i).getEspecie() + "Precipitacion: " + filtrados.get(i).getPrecipitacion() + "+-" + filtrados.get(i).getDeltaPre() + "Iluminación: " + filtrados.get(i).getIluminacion() + "Temperatura" + filtrados.get(i).getTemperatura() + "+-" + filtrados.get(i).getDeltaTem() + "Usos: " + filtrados.get(i).getUtilidades();           
+			Arbol arbolin = filtrados.get(i);
+			String nombre = arbolin.getEspecie();
+			float precipitacion = arbolin.getPrecipitacion();
+			float deltaPrecipitacion = arbolin.getDeltaPre();
+			String iluminacion = arbolin.getIluminacion();
+			float temperatura =  arbolin.getTemperatura();
+			float deltaTemperatura = arbolin.getDeltaTem();
+			String usos = arbolin.getUtilidades();
+			
+			s += '\n' + "Nombre: " + nombre;
+			s += '\n' + "Precipitacion: " + precipitacion + " +- " + deltaPrecipitacion;
+			s += '\n' + "Iluminacion: " + iluminacion;
+			s += '\n' + "Temperatura" + temperatura + " +- " + deltaTemperatura;
+			s += '\n' + "Usos: " + usos;   
+			s += '\n' + "--------------------------------------------------------------";
 		}
 		
 		return s;
