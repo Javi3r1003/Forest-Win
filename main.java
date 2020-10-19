@@ -15,7 +15,7 @@ Proyecto Programación Orientada a Objetos
 class main{
 	//metodo main
 	public static void main(String[] args){
-		//instancia de la clase vista
+		//instancia de la clase controlador
 		controlador control = new controlador();
 		
 		
