@@ -53,6 +53,7 @@ public class filtro
 			String ilm = ar.getIluminacion();
 			String u = ar.getUtilidades();
 			
+			//Se sumaron números al rango para que los arboles que esten cerca de este aparezcan, de manera que se obtengan arboles con propiedades similares
 			if(((p - dp) <= premin+5) && ((p + dp) >= premax-5))
 			{
 				if(ilm.contains(ilu))
