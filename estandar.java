@@ -14,8 +14,17 @@ Esta clase es derivada de la clase usuario, utiliza sus mismos métodos y atribu
 
 class estandar extends usuario{
 	
+	
+	//constructor de la clase
 	public estandar(String nom, String con){
+		//se llama al cosntructor de la clase base
 		super(nom, con);
 	}
 	
+	//@Overriding del métoto ya definido en usuario
+	public int tipoUsuario(vista v){
+		int tipo = v.usuarioEstandar();
+		
+		return tipo;
+	}
 }
