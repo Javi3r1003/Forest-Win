@@ -1,8 +1,8 @@
 /***************************************************************************
-									ForestWin
+ForestWin
 Proyecto Programación Orientada a Objetos
- vista.java (Clase vosta)
- Autores: Erick Raúl Alvarez Melgar - Carné 20900
+*vista.java (Clase vosta)
+*Autores: Erick Raúl Alvarez Melgar - Carné 20900
 		  Adam Sebastian Rios Kirste - Carné 20616
 		  Juan Pablo Zelada Ramirez - Carné 201004
 		  César Rodrigro Meza Torres - Carné 20287
@@ -14,6 +14,8 @@ Proyecto Programación Orientada a Objetos
  
  Con esta clase imprimiremos todo lo que sucede en consola.
  ****************************************************************************/
+
+//importamos todas la libreria util de java
 
 //importamos todas la libreria util de java
 import java.util.*;
