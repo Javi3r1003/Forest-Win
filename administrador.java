@@ -13,8 +13,18 @@ Esta clase es derivada de la clase usuario, utiliza sus mismos métodos y atribu
  ****************************************************************************/
  
 
-class administrador extends estandar{
+class administrador extends usuario{
+	
+	//constructor d ela clase 
 	public administrador(String nom, String con){
+		//se llama al cosntructor de la clase base
 		super(nom, con);
+	}
+	
+	//@Overriding del métoto ya definido en usuario
+	public int tipoUsuario(vista v){
+		int tipo = v.usuarioAdministrador();
+		
+		return tipo;
 	}
 }
