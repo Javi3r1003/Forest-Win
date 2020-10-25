@@ -1011,8 +1011,12 @@ class vista{
 			//verificamos el valor ingresado por el usuario
 			float premin = 0;
 			boolean validarPremin = false;
+			
+			//Se crea un while para verificar si el usuario desea modificar el la precipitación mínicma
 			while(validarPremin != true){
 				System.out.print("\nIngrese la precipitacion minima(mm): ");
+				
+				//Se verifican lo datos ingresados
 				try{
 					float verificadorPremin = scan.nextFloat();
 					
@@ -1026,6 +1030,7 @@ class vista{
 						System.out.println("\n***DEBES INGRESAR UNA PRECIPITACION MAYOR A 0***\n");
 					}
 				}
+				//Se captura la excepción
 				catch (Exception e){
 					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
 					scan.nextLine();
