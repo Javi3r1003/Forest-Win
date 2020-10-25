@@ -1246,9 +1246,39 @@ class vista{
 		if(existente == true){
 			System.out.println("\n-------NOMBRE DE LA ESPECIE A MODIFICAR: " + especie);
 			
-			System.out.print("\nIngrese el nuevo nombre del arbol: ");
-			String especieN = scan.nextLine();
-			arbolModificar.setEspecie(especieN);
+						String especieN ="";
+			boolean aceptarCambioNombre = false;
+			while(aceptarCambioNombre != true){
+				System.out.println("Desea Modificar el nombre de la especie " + especie + "??");
+				System.out.println("1-Si");
+				System.out.println("2-No");
+				System.out.print("=: ");
+				
+				try{
+			
+					int respuesta = scan.nextInt();
+					scan.nextLine();
+					
+					if(respuesta == 1){
+						System.out.print("\nIngrese el nuevo nombre del arbol: ");
+						especieN = scan.nextLine();
+						arbolModificar.setEspecie(especieN);
+						System.out.println("\n---SE MODIFICO NOMBRE DE ESPECIE---\n");
+						aceptarCambioNombre = true;
+					}else if(respuesta == 2){
+						System.out.println("\n---NO SE MODIFICO NOMBRE DE ESPECIE---\n");
+						aceptarCambioNombre = true;
+					}else if(respuesta > 2 || respuesta <= 0){
+						System.out.println("\n***OPCION INVALIDA***\n");
+					}
+				}catch(Exception e){
+					System.out.println("\n***LA OPCION DEBE SER NUMERICA***\n");
+					scan.nextLine();
+				}
+				
+				
+			}
+		
 			
 			//verificamos el valor ingresado por el usuario
 			float premax = 0;
