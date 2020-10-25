@@ -1506,9 +1506,12 @@ class vista{
 			//verificamos el valor ingresado por el usuario
 			String textUtilidades = "";
 			boolean aceptarCambioUtil = false;
+			
+			//Se implementa un bucle while para que el usuario eliga modificar o no las utilidades del árbol
 			while(aceptarCambioUtil != true){
 				boolean validarUtilidades = false;
 				
+				//Se imprime el menú para que decida si modificar las utilidades
 				System.out.println("Desea Modificar las utilidades de la especie??");
 				System.out.println("actual/actuales: " + arbolModificar.getUtilidades());
 				System.out.println("1-Si");
@@ -1516,9 +1519,11 @@ class vista{
 				System.out.print("=: ");
 				
 				try{
+					//Se recibe la respuesta 
 					int respuesta = scan.nextInt();
 					scan.nextLine();
 					
+					//Se pone una sentencia lógica para determinar las acciones del programa.
 					if(respuesta == 1){
 						while(validarUtilidades != true){
 							System.out.println("\n-Ingrese las utilidades que desea(numero)");
@@ -1562,6 +1567,7 @@ class vista{
 								}else if(opcionUtilidad <= 0 || opcionUtilidad > utilidades.size()){
 									System.out.println("\n***OPCION INVALIDA***\n");
 								}
+								//Se atrapa la excepción de ingresar texto
 							}catch(Exception e){
 								System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
 								scan.nextLine();
