@@ -986,9 +986,12 @@ class vista{
 		if(existente == false){
 			float premax = 0;
 			boolean validarPremax = false;
+			
+			//Se crea un while para ver si modificar la precipitación máxima.
 			while(validarPremax != true){
 				System.out.print("\nIngrese la precipitacion maxima(mm): ");
 				try{
+					//Se verifica el rango del exámen
 					float verificadorPremax = scan.nextFloat();
 					if(verificadorPremax > 0){
 						premax = verificadorPremax;
@@ -998,6 +1001,7 @@ class vista{
 						System.out.println("\n***DEBES INGRESAR UNA PRECIPITACION MAYOR A 0***\n");
 					}
 					
+					//Se captura la excepción de texto
 				}catch (Exception e){
 					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
 					scan.nextLine();
