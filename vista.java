@@ -1105,6 +1105,8 @@ class vista{
 			//verificamos el valor ingresado por el usuario
 			float tempmin = 0;
 			boolean validarTempmin = false;
+			
+			//Se crea un while para confirmar si el usuario desea hacer modificaciones
 			while(validarTempmin != true){
 				System.out.print("\nIngrese la temperatura minima(Celsius): ");
 				try{
@@ -1116,7 +1118,7 @@ class vista{
 					}else if(verificadorTempmin > tempmax){
 						System.out.println("\n***LA TEMPERATURA MINIMA NO PUEDE SER MAYOR QUE LA MAXIMA***\n");
 					}
-					
+					//Se captura la excepción
 				}catch(Exception e){
 					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
 					scan.nextLine();
