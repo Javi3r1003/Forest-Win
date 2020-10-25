@@ -1298,6 +1298,8 @@ class vista{
 			//verificamos el valor ingresado por el usuario
 			float premax = 0;
 			boolean validarPremax = false;
+			
+			//Se crea un while para modificar el valor del campo
 			while(validarPremax != true){
 				System.out.print("\nIngrese la precipitacion maxima(mm): ");
 				try{
@@ -1310,6 +1312,7 @@ class vista{
 						System.out.println("\n***DEBES INGRESAR UNA PRECIPITACION MAYOR A 0***\n");
 					}
 					
+					//Se atrapa la excepción
 				}catch (Exception e){
 					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
 					scan.nextLine();
