@@ -1450,6 +1450,56 @@ class vista{
 				}
 			}
 			
+			float tempmin = 0;
+			boolean validarTempmin = false;
+			boolean aceptarCambioTempMin = false;
+			while(aceptarCambioTempMin != true){
+				System.out.println("Desea Modificar la temperatura minima??");
+				System.out.println("actual: " + (arbolModificar.getTemperatura() - arbolModificar.getDeltaTem()));
+				System.out.println("1-Si");
+				System.out.println("2-No");
+				System.out.print("=: ");
+				try{
+			
+					int respuesta = scan.nextInt();
+					scan.nextLine();
+					
+					if(respuesta == 1){
+				
+						while(validarTempmin != true){
+							System.out.print("\nIngrese la temperatura minima(Celsius): ");
+							try{
+								
+								float verificadorTempmin = scan.nextFloat();
+								if(verificadorTempmin <= tempmax){
+									tempmin = verificadorTempmin;
+									validarTempmin = true;
+								}else if(verificadorTempmin > tempmax){
+									System.out.println("\n***LA TEMPERATURA MINIMA NO PUEDE SER MAYOR QUE LA MAXIMA***\n");
+								}
+								
+							}catch(Exception e){
+								System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+								scan.nextLine();
+							}					
+						}
+						System.out.println("\n---SE MODIFICARON LA TEMPERATURA MINIMA DE LA ESPECIE---\n");
+						aceptarCambioTempMin = true;
+						
+					}else if(respuesta == 2){
+						tempmin = (arbolModificar.getTemperatura() - arbolModificar.getDeltaTem());
+						System.out.println("\n---NO SE MODIFICARON LA TEMPERATURA MINIMA DE LA ESPECIE---\n");
+						aceptarCambioTempMin = true;
+					}else if(respuesta > 2 || respuesta <= 0){
+						System.out.println("\n***OPCION INVALIDA***\n");
+					}
+					
+				}catch(Exception e){
+					System.out.println("\n***LA OPCION DEBE SER NUMERICA***\n");
+					scan.nextLine();
+				}
+			}
+			
 			
 			ArrayList<String> utilidades = new ArrayList<String>(Arrays.asList("Maderable" , "Latex" , "Lenia" , "Comestible" , "Medicinal" , "Forraje" , "Ornamental"));
 			
