@@ -1330,51 +1330,77 @@ class vista{
 			
 			//verificamos el valor ingresado por el usuario
 			String textIluminaciones = "";
-			boolean validarIluminacion = false;
-			while(validarIluminacion != true){
-				System.out.println("\n-Ingrese las iluminaciones que desea(numero)");
-				for(int i = 0 ; i<iluminaciones.size() ; i++){
-					System.out.println((i+1) + "- " + iluminaciones.get(i));
-				}
+			boolean aceptarCambioIlum = false;
+			while(aceptarCambioIlum != true){
+				System.out.println("Desea Modificar la iluminacion de la especie??");
+				System.out.println("actual/actuales: " + arbolModificar.getIluminacion());
+				System.out.println("1-Si");
+				System.out.println("2-No");
 				System.out.print("=: ");
-				
 				try{
-					int opcionIlum = scan.nextInt();
-					if(opcionIlum > 0 && opcionIlum <= iluminaciones.size()){
-						textIluminaciones += iluminaciones.get(opcionIlum-1) + ", ";
-						iluminaciones.remove(opcionIlum-1);
-						
-						if(iluminaciones.size() != 0){
-							boolean otraIluminacion = false;
-							while(otraIluminacion != true){
-								System.out.println("\n-Desea agregar otra luminacion?");
-								System.out.println("1- Si");
-								System.out.println("2- No");
-								System.out.print("=: ");
-								try{
-									int otro = scan.nextInt();
-									if(otro == 1){
-										otraIluminacion = true;
-									}else if(otro == 2){
-										otraIluminacion = true;
-										validarIluminacion = true;
-									}else if(otro > 2 || otro <= 0){
-										System.out.println("\n***OPCION INVALIDA***\n");
-									}
-								}catch(Exception e){
-									System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
-									scan.nextLine();
-								}
+					
+					int respuesta = scan.nextInt();
+					scan.nextLine();
+					
+					if(respuesta == 1){
+						boolean validarIluminacion = false;
+						while(validarIluminacion != true){
+							System.out.println("\n-Ingrese las iluminaciones que desea(numero)");
+							for(int i = 0 ; i<iluminaciones.size() ; i++){
+								System.out.println((i+1) + "- " + iluminaciones.get(i));
 							}
-							
-						}else if(iluminaciones.size() == 0){
-							validarIluminacion = true;
+							System.out.print("=: ");
+							try{
+								int opcionIlum = scan.nextInt();
+								if(opcionIlum > 0 && opcionIlum <= iluminaciones.size()){
+									textIluminaciones += iluminaciones.get(opcionIlum-1) + ", ";
+									iluminaciones.remove(opcionIlum-1);
+									
+									if(iluminaciones.size() != 0){
+										boolean otraIluminacion = false;
+										while(otraIluminacion != true){
+											System.out.println("\n-Desea agregar otra luminacion?");
+											System.out.println("1- Si");
+											System.out.println("2- No");
+											System.out.print("=: ");
+											try{
+												int otro = scan.nextInt();
+												if(otro == 1){
+													otraIluminacion = true;
+												}else if(otro == 2){
+													otraIluminacion = true;
+													validarIluminacion = true;
+												}else if(otro > 2 || otro <= 0){
+													System.out.println("\n***OPCION INVALIDA***\n");
+												}
+											}catch(Exception e){
+												System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+												scan.nextLine();
+											}
+										}
+										
+									}else if(iluminaciones.size() == 0){
+										validarIluminacion = true;
+									}
+								}else if(opcionIlum <= 0 || opcionIlum > iluminaciones.size()){
+									System.out.println("\n***OPCION INVALIDA***\n");
+								}
+							}catch(Exception e){
+								System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+								scan.nextLine();
+							}
+							System.out.println("\n---SE MODIFICARON LAS ILUMINACIONES DE LA ESPECIE---\n");
+							aceptarCambioIlum = true;
 						}
-					}else if(opcionIlum <= 0 || opcionIlum > iluminaciones.size()){
+					}else if(respuesta == 2){
+						textIluminaciones = arbolModificar.getIluminacion();
+						System.out.println("\n---NO SE MODIFICARON LAS ILUMINACIONES DE LA ESPECIE---\n");
+						aceptarCambioIlum = true;
+					}else if(respuesta > 2 || respuesta <= 0){
 						System.out.println("\n***OPCION INVALIDA***\n");
 					}
 				}catch(Exception e){
-					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+					System.out.println("\n***LA OPCION DEBE SER NUMERICA***\n");
 					scan.nextLine();
 				}
 			}
