@@ -1409,36 +1409,45 @@ class vista{
 			
 			//verificamos el valor ingresado por el usuario
 			float tempmax = 0;
-			boolean validarTempmax = false;
-			while(validarTempmax != true){
-				System.out.print("\nIngrese la temperatura maxima(Celsius): ");
+			boolean aceptarCambioTempMax = false;
+			while(aceptarCambioTempMax != true){
+				System.out.println("Desea Modificar la temperatura maxima??");
+				System.out.println("actual: " + (arbolModificar.getTemperatura() + arbolModificar.getDeltaTem()));
+				System.out.println("1-Si");
+				System.out.println("2-No");
+				System.out.print("=: ");
+				
 				try{
-					tempmax = scan.nextFloat();
-					validarTempmax = true;
-				}catch(Exception e){
-					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
-					scan.nextLine();
-				}
-			}
 			
-			float tempmin = 0;
-			boolean validarTempmin = false;
-			while(validarTempmin != true){
-				System.out.print("\nIngrese la temperatura minima(Celsius): ");
-				try{
+					int respuesta = scan.nextInt();
+					scan.nextLine();
 					
-					float verificadorTempmin = scan.nextFloat();
-					if(verificadorTempmin <= tempmax){
-						tempmin = verificadorTempmin;
-						validarTempmin = true;
-					}else if(verificadorTempmin > tempmax){
-						System.out.println("\n***LA TEMPERATURA MINIMA NO PUEDE SER MAYOR QUE LA MAXIMA***\n");
+					if(respuesta == 1){
+						boolean validarTempmax = false;
+						while(validarTempmax != true){
+							System.out.print("\nIngrese la temperatura maxima(Celsius): ");
+							try{
+								tempmax = scan.nextFloat();
+								validarTempmax = true;
+							}catch(Exception e){
+								System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+								scan.nextLine();
+							}
+						}
+						aceptarCambioTempMax = true;
+						System.out.println("\n---SE MODIFICARON LA TEMPERATURA MAXIMA DE LA ESPECIE---\n");
+					}else if(respuesta == 2){
+						tempmax = (arbolModificar.getTemperatura() + arbolModificar.getDeltaTem());
+						System.out.println("\n---NO SE MODIFICARON LA TEMPERATURA MAXIMA DE LA ESPECIE---\n");
+						aceptarCambioTempMax = true;
+					}else if(respuesta > 2 || respuesta <= 0){
+						System.out.println("\n***OPCION INVALIDA***\n");
 					}
 					
 				}catch(Exception e){
-					System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
+					System.out.println("\n***LA OPCION DEBE SER NUMERICA***\n");
 					scan.nextLine();
-				}					
+				}
 			}
 			
 			
