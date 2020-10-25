@@ -1246,7 +1246,7 @@ class vista{
 		if(existente == true){
 			System.out.println("\n-------NOMBRE DE LA ESPECIE A MODIFICAR: " + especie);
 			
-						String especieN ="";
+		String especieN ="";
 			boolean aceptarCambioNombre = false;
 			while(aceptarCambioNombre != true){
 				System.out.println("Desea Modificar el nombre de la especie " + especie + "??");
