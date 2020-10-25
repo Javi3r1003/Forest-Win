@@ -1143,8 +1143,11 @@ class vista{
 						utilidades.remove(opcionUtilidad-1);
 						
 						if(utilidades.size() != 0){
+							
+							//SE define un while par confirmar si el usuario desea modificar las utilidades
 							boolean otraUtilidad = false;
 							while(otraUtilidad != true){
+								//Se imprime un el menu
 								System.out.println("\n-Desea agregar otra utilidad?");
 								System.out.println("1- Si");
 								System.out.println("2- No");
@@ -1159,6 +1162,7 @@ class vista{
 									}else if(otro > 2 || otro <= 0){
 										System.out.println("\n***OPCION INVALIDA***\n");
 									}
+									//Se atrapa la excepción
 								}catch(Exception e){
 									System.out.println("\n***DEBES INGRESAR UNA CANTIDAD NUMERICA***\n");
 									scan.nextLine();
